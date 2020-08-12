@@ -10,8 +10,8 @@ canvas.height = window.innerHeight;
 let c = canvas.getContext('2d');
 
 // --- set variables
-const circleArray = [];
-const numberOfCircles = 100;
+let circleArray = [];
+const numberOfCircles = 500;
 const colorArray = [
     [21, 176, 151],
     [92, 93, 141],
@@ -82,14 +82,30 @@ function animate() {
 /* ----- Starting the Animation ----- */ 
 
 //populate the circle array
-for (let i = 0;i<numberOfCircles;i++) {
-    circleArray.push(randomizeCircle());
+function init() {
+    circleArray = [];
+
+    for (let i = 0;i<numberOfCircles;i++) {
+        circleArray.push(randomizeCircle());
+    }
 }
+
+init();
 
 //start the animation loop
 animate();
 
+
+/* ----- Event Listeners ----- */
 window.addEventListener('mousemove', event => {
     mouse.x = event.x;
     mouse.y = event.y;
+});
+
+window.addEventListener('resize', () => {
+    // --- resize canvas to window size
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    init();
 });
