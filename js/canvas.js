@@ -11,8 +11,7 @@ let c = canvas.getContext('2d');
 
 // --- set variables
 let circleArray = [];
-let numberOfCircles = 500;
-const circleDensity = 1000;
+const circleDensity = 1000; // larger number means less density
 const colorArray = [
     [21, 176, 151],
     [92, 93, 141],
@@ -83,7 +82,7 @@ function animate() {
 //populate the circle array
 function init() {
     const windowArea =  window.innerWidth * window.innerHeight;
-    numberOfCircles = windowArea / circleDensity;
+    const numberOfCircles = windowArea / circleDensity;
     circleArray = [];
 
     for (let i = 0;i<numberOfCircles;i++) {
