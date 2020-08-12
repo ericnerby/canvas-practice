@@ -54,18 +54,16 @@ function randomNumber(lower,upper,allowZero = false, wholeNums = false) {
  * @returns {object} a new object from the Circle class
  */
 function randomizeCircle() {
-    let radius = randomNumber(1,5);
-    let x = randomNumber((2*radius), innerWidth - (2*radius));
-    let y = randomNumber((2*radius), innerHeight - (2*radius));
-    let dx = randomNumber(-1, 1);
-    let dy = randomNumber(-1, 1);
+    const radius = randomNumber(1,5);
+    const x = randomNumber((2*radius), innerWidth - (2*radius));
+    const y = randomNumber((2*radius), innerHeight - (2*radius));
+    const dx = randomNumber(-1, 1);
+    const dy = randomNumber(-1, 1);
     
-    let colorNumber = randomNumber(0,colorArray.length -1,true,true);
+    const colorNumber = randomNumber(0,colorArray.length -1,true,true);
     console.log(colorNumber);
-    let colorValues = colorArray[colorNumber];
-    let red = colorValues[0];
-    let green = colorValues[1];
-    let blue = colorValues[2];
+    const colorValues = colorArray[colorNumber];
+    const [red,green,blue] = colorValues;
     return new Circle(x,y,dx,dy,radius,red,green,blue);
 }
 
