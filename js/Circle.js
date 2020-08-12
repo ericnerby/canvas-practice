@@ -15,7 +15,7 @@ class Circle {
         c.stroke();
     }
 
-    update = () => {
+    move = () => {
         this.draw();
         if (this.x + this.radius > innerWidth || this.x - this.radius < 0) {
             this.dx = -this.dx;
