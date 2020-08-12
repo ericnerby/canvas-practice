@@ -21,6 +21,11 @@ const colorArray = [
     [216, 204, 52],
 ]
 
+const mouse = {
+    x: undefined,
+    y: undefined
+};
+
 /* ----- Helper Functions ----- */
 
 /**
@@ -81,3 +86,8 @@ for (let i = 0;i<numberOfCircles;i++) {
 
 //start the animation loop
 animate();
+
+window.addEventListener('mousemove', event => {
+    mouse.x = event.x;
+    mouse.y = event.y;
+});

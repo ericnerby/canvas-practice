@@ -17,6 +17,8 @@ class Circle {
         this.dy = dy;
         this.radius = radius;
         this.color = `rgb(${r},${g},${b})`;
+        this.maxRadius = 40;
+        this.minRadius = 2;
     }
 
     /**
@@ -43,6 +45,16 @@ class Circle {
         }
         this.x += this.dx;
         this.y += this.dy;
+
+        //interactivity
+        if (this.x - mouse.x < 50 && this.x - mouse.x > -50
+            && this.y - mouse.y < 50 && this.y - mouse.y > -50) {
+            if (this.radius < this.maxRadius) {
+                this.radius += 1;
+            }
+        } else if (this.radius > this.minRadius) {
+            this.radius -= 1;
+        }
 
     }
 }
