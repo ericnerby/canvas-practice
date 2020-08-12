@@ -32,6 +32,9 @@ function randomNumber(lower,upper,allowZero = false, wholeNums = false) {
             return randomNumber(lower,upper,allowZero);
         }
     }
+    if (wholeNums) {
+        return Math.floor(output);
+    }
     return output;
 }
 
