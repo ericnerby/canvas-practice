@@ -2,10 +2,19 @@
 
 let canvas = document.querySelector('canvas');
 
+// --- resize canvas to window size
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+// --- setup context for drawing
 let c = canvas.getContext('2d');
+
+// --- set variables
+const radius = 30;
+const circleArray = [];
+const numberOfCircles = 100;
+
+/* ----- Helper Functions ----- */
 
 /**
  * generates a random number between two given values
@@ -26,6 +35,11 @@ function randomNumber(lower,upper,allowZero = false, wholeNums = false) {
     return output;
 }
 
+/**
+ * Passes random parameters to the Circle constructor method and returns a new Circle object
+ * @param   {number} radius 
+ * @returns {object} a new object from the Circle class
+ */
 function randomizeCircle(radius) {
     let x = randomNumber((2*radius), innerWidth - (2*radius));
     let y = randomNumber((2*radius), innerHeight - (2*radius));
@@ -37,22 +51,22 @@ function randomizeCircle(radius) {
     return new Circle(x,y,dx,dy,radius,red,green,blue);
 }
 
-const radius = 30;
-const circleArray = [];
-
-for (let i = 0;i<100;i++) {
-    circleArray.push(randomizeCircle(radius));
-}
-
-console.log(circleArray);
-
+/**
+ * sets up animation loop for circles
+ */
 function animate() {
     requestAnimationFrame(animate);
     c.clearRect(0, 0, innerWidth, innerHeight);
 
     circleArray.forEach(circle => circle.update());
-
-    
 }
 
+/* ----- Starting the Animation ----- */ 
+
+//populate the circle array
+for (let i = 0;i<numberOfCircles;i++) {
+    circleArray.push(randomizeCircle(radius));
+}
+
+//start the animation loop
 animate();
