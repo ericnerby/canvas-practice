@@ -17,7 +17,7 @@ class Circle {
         this.dy = dy;
         this.radius = radius;
         this.color = `rgb(${r},${g},${b})`;
-        this.maxRadius = 40;
+        this.maxRadius = 60;
         this.minRadius = 2;
     }
 

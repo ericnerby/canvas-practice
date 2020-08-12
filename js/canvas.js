@@ -13,6 +13,13 @@ let c = canvas.getContext('2d');
 const radius = 30;
 const circleArray = [];
 const numberOfCircles = 100;
+const colorArray = [
+    [21, 176, 151],
+    [92, 93, 141],
+    [219, 217, 219],
+    [196, 69, 54],
+    [216, 204, 52],
+]
 
 const mouse = {
     x: undefined,
@@ -53,9 +60,13 @@ function randomizeCircle(radius) {
     let y = randomNumber((2*radius), innerHeight - (2*radius));
     let dx = randomNumber(-1, 1);
     let dy = randomNumber(-1, 1);
-    let red = randomNumber(0,255, true, true);
-    let green = randomNumber(0,255, true, true);
-    let blue = randomNumber(0,255, true, true);
+    
+    let colorNumber = randomNumber(0,colorArray.length -1,true,true);
+    console.log(colorNumber);
+    let colorValues = colorArray[colorNumber];
+    let red = colorValues[0];
+    let green = colorValues[1];
+    let blue = colorValues[2];
     return new Circle(x,y,dx,dy,radius,red,green,blue);
 }
 
