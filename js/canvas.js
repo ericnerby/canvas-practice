@@ -10,7 +10,6 @@ canvas.height = window.innerHeight;
 let c = canvas.getContext('2d');
 
 // --- set variables
-const radius = 30;
 const circleArray = [];
 const numberOfCircles = 100;
 const colorArray = [
@@ -52,10 +51,10 @@ function randomNumber(lower,upper,allowZero = false, wholeNums = false) {
 
 /**
  * Passes random parameters to the Circle constructor method and returns a new Circle object
- * @param   {number} radius 
  * @returns {object} a new object from the Circle class
  */
-function randomizeCircle(radius) {
+function randomizeCircle() {
+    let radius = randomNumber(1,5);
     let x = randomNumber((2*radius), innerWidth - (2*radius));
     let y = randomNumber((2*radius), innerHeight - (2*radius));
     let dx = randomNumber(-1, 1);
@@ -84,7 +83,7 @@ function animate() {
 
 //populate the circle array
 for (let i = 0;i<numberOfCircles;i++) {
-    circleArray.push(randomizeCircle(radius));
+    circleArray.push(randomizeCircle());
 }
 
 //start the animation loop
