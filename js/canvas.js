@@ -61,7 +61,7 @@ function randomizeCircle(radius) {
     let dx = randomNumber(-1, 1);
     let dy = randomNumber(-1, 1);
     
-    let colorNumber = Math.floor(randomNumber(0,colorArray.length -1));
+    let colorNumber = randomNumber(0,colorArray.length -1,true,true);
     console.log(colorNumber);
     let colorValues = colorArray[colorNumber];
     let red = colorValues[0];
