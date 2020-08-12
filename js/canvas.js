@@ -10,9 +10,21 @@ canvas.height = window.innerHeight;
 let c = canvas.getContext('2d');
 
 // --- set variables
-const radius = 30;
-const circleArray = [];
-const numberOfCircles = 100;
+let circleArray = [];
+let numberOfCircles = 500;
+const circleDensity = 1000;
+const colorArray = [
+    [21, 176, 151],
+    [92, 93, 141],
+    [219, 217, 219],
+    [196, 69, 54],
+    [216, 204, 52],
+]
+
+const mouse = {
+    x: undefined,
+    y: undefined
+};
 
 /* ----- Helper Functions ----- */
 
@@ -40,17 +52,19 @@ function randomNumber(lower,upper,allowZero = false, wholeNums = false) {
 
 /**
  * Passes random parameters to the Circle constructor method and returns a new Circle object
- * @param   {number} radius 
  * @returns {object} a new object from the Circle class
  */
-function randomizeCircle(radius) {
-    let x = randomNumber((2*radius), innerWidth - (2*radius));
-    let y = randomNumber((2*radius), innerHeight - (2*radius));
-    let dx = randomNumber(-1, 1);
-    let dy = randomNumber(-1, 1);
-    let red = Math.floor(randomNumber(0,255, true));
-    let green = Math.floor(randomNumber(0,255, true));
-    let blue = Math.floor(randomNumber(0,255, true));
+function randomizeCircle() {
+    const radius = randomNumber(1,5);
+    const x = randomNumber((2*radius), innerWidth - (2*radius));
+    const y = randomNumber((2*radius), innerHeight - (2*radius));
+    const dx = randomNumber(-1, 1);
+    const dy = randomNumber(-1, 1);
+    
+    const colorNumber = randomNumber(0,colorArray.length -1,true,true);
+    console.log(colorNumber);
+    const colorValues = colorArray[colorNumber];
+    const [red,green,blue] = colorValues;
     return new Circle(x,y,dx,dy,radius,red,green,blue);
 }
 
@@ -67,9 +81,31 @@ function animate() {
 /* ----- Starting the Animation ----- */ 
 
 //populate the circle array
-for (let i = 0;i<numberOfCircles;i++) {
-    circleArray.push(randomizeCircle(radius));
+function init() {
+    const windowArea =  window.innerWidth * window.innerHeight;
+    numberOfCircles = windowArea / circleDensity;
+    circleArray = [];
+
+    for (let i = 0;i<numberOfCircles;i++) {
+        circleArray.push(randomizeCircle());
+    }
 }
+
+init();
 
 //start the animation loop
 animate();
+
+/* ----- Event Listeners ----- */
+window.addEventListener('mousemove', event => {
+    mouse.x = event.x;
+    mouse.y = event.y;
+});
+
+window.addEventListener('resize', () => {
+    // --- resize canvas to window size
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    init();
+});
