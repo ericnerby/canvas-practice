@@ -53,9 +53,9 @@ function randomizeCircle(radius) {
     let y = randomNumber((2*radius), innerHeight - (2*radius));
     let dx = randomNumber(-1, 1);
     let dy = randomNumber(-1, 1);
-    let red = Math.floor(randomNumber(0,255, true));
-    let green = Math.floor(randomNumber(0,255, true));
-    let blue = Math.floor(randomNumber(0,255, true));
+    let red = randomNumber(0,255, true, true);
+    let green = randomNumber(0,255, true, true);
+    let blue = randomNumber(0,255, true, true);
     return new Circle(x,y,dx,dy,radius,red,green,blue);
 }
 
